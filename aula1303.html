@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aula 13/03</title>
+    </head>
+    <body>
+        <h1>Formulário</h1>
+        <form method="get">
+            <fieldset>
+                <legend>Dados</legend>
+                <p>Nome:<input type="text" name="nome" minlength="3" maxlength="20" size="30" placeholder="Escreva o seu nome aqui!" required></p>
+                <p>Sexo:
+                    <input type="radio" name="sexo" id="rdM" value="M">
+                    <label for="rdM">Masculino</label>
+
+                    <input type="radio" name="sexo" id="rdF" value="F">
+                    <label for="rdF">Feminino</label>
+                </p>
+                <p>
+                    <label for="cor">Escolha uma cor: </label>
+                    <input type="color" name="cor" id="cor">
+                </p>
+                <p>
+                    <label for="dataNasc">Data de Nascimento:</label>
+                    <input type="date" name="datanasc" id="dataNasc">
+                </p>
+                <p>
+                    <label for="data">Data e Hora:</label>
+                    <input type="datetime-local" name="data" id="data">
+                </p>
+                <p>
+                    <label for="data">Arquivo:</label>
+                    <input type="file" name="arquivo" id="arquivo">
+                </p>
+                <input type="hidden" name="id" value="10">
+                <p>
+                    <label for="volume">Volume</label>
+                    <input type="range" name="volume" id="volume">
+                </p>
+                <p>
+                    <label for="curso">Escolha um curso: </label>
+                    <select name="curso" id="curso">
+                        <option value="ADS">ADS</option>
+                        <option value="TPG">TPG</option>
+                        <option value="TPQ">Processos Químicos</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="cursoGrupo">Cursos Agrupados: </label>
+                    <select name="cursoGrupo" id="cursoGrupo">
+                        <option value="">-- Escolha um curso --</option>
+                        <hr>
+                        <optgroup label="Informática">
+                            <option value="ADS">ADS</option>
+                            <option value="TecInfo">Técnico em Informática</option>
+                        </optgroup>
+                        <hr>
+                        <optgroup label="Química">
+                            <option value="TPQ">Processos Químicos</option>
+                            <option value="TecQui">Técnico em Química</option>
+                        </optgroup>
+                    </select>
+                </p>
+                <p>
+                    <label for="frutas">Escolha suas frutas: </label>
+                    <select name="frutas" size="3" multiple>
+                        <option value="Abacate">Abacate</option>
+                        <option value="Banana">Banana</option>
+                        <option value="Laranja">Laranja</option>
+                        <option value="Maçã">Maçã</option>
+                        <option value="Uva">Uva</option>
+                    </select>
+                </p>
+                <p>
+                    <input type="checkbox" name="termos" id="termos" value="aceito">
+                    <label for="termos">Eu aceito os termos e condições</label>
+                </p>
+                <p><button type="reset">Limpar</button><button type="submit">Salvar</button></p>
+            </fieldset>
+        </form>
+    </body>
+</html>
