@@ -29,6 +29,12 @@ window.onload = function(){
     });
 
     btnConfirmar.addEventListener('click', function() {
-        console.log(opcaoAdd[1].value);
+        if(opcaoRadio[0].checked){
+            const estoqueAtual = parseInt(document.getElementById("qtdProd" + idProduto.value).textContent);
+            document.getElementById("qtdProd" + idProduto.value).textContent = estoqueAtual + parseInt(qtdeProduto.value);
+        }else{
+            const estoqueAtual = parseInt(document.getElementById("qtdProd" + idProduto.value).textContent);
+            document.getElementById("qtdProd" + idProduto.value).textContent = estoqueAtual - parseInt(qtdeProduto.value);
+        }
     })
 }
