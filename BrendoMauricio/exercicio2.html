@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercício 2</title>
+    </head>
+    <body>
+        <h1>Cadastro de Produtos</h1>
+        <label for="nome">Nome do Produto:</label>
+        <input type="text" name="nome" id="nome">
+
+        <label for="estoque">Estoque:</label>
+        <input type="number" name="estoque" id="estoque">
+
+        <button type="button" id="btnSalvar">Salvar Produto</button>
+
+        <br>
+        <br>
+
+        <table border="1" cellpadding="5">
+            <thead>
+                <th>ID</th>
+                <th>Produto</th>
+                <th>Qtde Estoque</th>
+            </thead>
+            <tbody id="produtos">
+            </tbody>
+        </table>
+
+        <br>
+        <h3>Adicionar/Retirar Estoque</h3>
+        <label for="idproduto">ID do Produto:</label>
+        <input type="number" name="idproduto" id="idproduto">
+
+        <label for="qtdeproduto">Quantidade:</label>
+        <input type="number" name="qtdeproduto" id="qtdeproduto">
+
+        <br>
+        <input type="radio" name="tipo" id="radioAdicionar" value="adicionar">
+        <label for="tipo">Adicionar</label>
+        <input type="radio" name="tipo" id="radioRemover" value="remover">
+        <label for="tipo">Remover</label>
+        <br>
+        <br>
+        <button type="button" id="btnConfirmar">Confirmar</button>
+
+        <script src="exercicio2.js" type="text/javascript"></script>
+    </body>
+</html>
