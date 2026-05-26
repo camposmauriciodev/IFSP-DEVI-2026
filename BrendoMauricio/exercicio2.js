@@ -8,8 +8,7 @@ window.onload = function(){
 
     const idProduto = document.getElementById("idproduto");
     const qtdeProduto = document.getElementById("qtdeproduto");
-    const opcaoAdd = document.getElementsByName("tipo");
-    //const opcaoRem = document.getElementById("radioRemover");
+    const opcaoRadio = document.getElementsByName("tipo");
     const btnConfirmar = document.getElementById("btnConfirmar");
 
     btnSalvar.addEventListener('click', function() {
