@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <title>Tarefas (Supabase)</title>
+    </head>
+    <body>
+        <div class="container">
+            <h3>Lista de Tarefas</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Descrição</th>
+                        <th>Prioridade</th>
+                    </tr>
+                </thead>
+                <tbody id="dadosTabela">
+                    <!-- Tarefas provenientes da API -->
+                </tbody>
+            </table>
+            <hr>
+            <h3>Add Nova Tarefa</h3>
+            <div class="mb-3">
+                <label class="form-label">Descrição</label>
+                <input type="text" id="descricao" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Prioridade</label>
+                <input type="text" id="prioridade" class="form-control">
+            </div>
+            <button type="button" id="btnAdicionar" class="btn btn-primary">Adicionar</button>
+        </div>
+        <script type="text/javascript">
+            const url = "https://tkzckojlfmpgqtzcdfwj.supabase.co/rest/v1/tarefas";
+            const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRremNrb2psZm1wZ3F0emNkZndqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NDkzNTAsImV4cCI6MjA5NjUyNTM1MH0.p0VZBo06UWHJUuRtG1RxIZ9ZXOSOhZn-5tUU0GjPFCE";
+
+            window.onload = function(){
+                // listar as tarefas na tabela
+                getTarefas();
+
+                const btnAdicionar = document.getElementById("btnAdicionar");
+                btnAdicionar.addEventListener('click', function(){
+                    addTarefa();
+                });
+            }
+
+            async function getTarefas() {
+                const listaTarefas = await fetch(url, {
+                    headers: {
+                        "apikey" : apikey
+                    }
+                }).then(response => response.json());
+
+                const dadosTabela = document.getElementById("dadosTabela");
+                // Limpar os dados da tabela
+                dadosTabela.innerHTML = "";
+
+                for(let tarefa of listaTarefas){
+                    // Criar uma nova linha (tr) e 3 colunas (td)
+                    const tr = document.createElement("tr");
+                    const tdId  = document.createElement("td");
+                    const tdDescricao  = document.createElement("td");
+                    const tdPrioridade  = document.createElement("td");
+
+                    tdId.textContent = tarefa.id;
+                    tdDescricao.textContent = tarefa.descricao;
+                    tdPrioridade.textContent = tarefa.prioridade;
+
+                    tr.append(tdId);
+                    tr.append(tdDescricao);
+                    tr.append(tdPrioridade);
+
+                    dadosTabela.append(tr);
+                }
+            }
+
+            async function addTarefa() {
+                // Pegar os valores preenchidos no formulário
+                const descricao = document.getElementById("descricao");
+                const prioridade = document.getElementById("prioridade");
+
+                const tarefa = {
+                    "descricao" : descricao.value,
+                    "prioridade" : prioridade.value
+                };
+
+                const resposta = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "apikey" : apikey,
+                        "Content-Type" : "application/json"
+                    },
+                    body: JSON.stringify(tarefa) // Converte o obj JS para JSON
+                });
+
+                if(resposta.ok == true){
+                    alert("Tarefa adicionada com sucesso!");
+                    getTarefas();
+                    // Limpar os campos
+                    descricao.value = "";
+                    prioridade.value = "";
+                }else{
+                    alert("Erro ao adicionar tarefa");
+                }
+            }
+        </script>
+    </body>
+</html>
